@@ -11,7 +11,7 @@ namespace Kevenin.WpfBase.ViewModelBases
 {
     public enum WindowDialogType { Information, Avertissement, Erreur }
 
-    public class BaseViewModel : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         #region Private Fields
 
@@ -21,7 +21,7 @@ namespace Kevenin.WpfBase.ViewModelBases
 
         #region Protected Constructors
 
-        protected BaseViewModel()
+        protected ViewModelBase()
         {
             propertyValueMap = new Dictionary<string, object>();
         }

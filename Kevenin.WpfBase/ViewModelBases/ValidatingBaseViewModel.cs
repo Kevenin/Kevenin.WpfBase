@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kevenin.WpfBase.ViewModelBases
 {
-    public class ValidatingBaseViewModel : BaseViewModel, IDataErrorInfo
+    public class ValidatingBaseViewModel : ViewModelBase, IDataErrorInfo
     {
         #region Private Fields
 

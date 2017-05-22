@@ -1,1 +1,5 @@
 D:\Documents\Source\Kevenin.WpfBase\Kevenin.WpfBase\obj\Debug\Kevenin.WpfBase.csprojResolveAssemblyReference.cache
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.WpfBase\bin\Debug\Kevenin.WpfBase.dll
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.WpfBase\bin\Debug\Kevenin.WpfBase.pdb
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.WpfBase\obj\Debug\Kevenin.WpfBase.dll
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.WpfBase\obj\Debug\Kevenin.WpfBase.pdb
