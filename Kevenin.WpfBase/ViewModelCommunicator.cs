@@ -1,52 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kevenin.WpfBase
 {
-    public enum ViewModelMessages
+    public static class Mediator
     {
-        //TODO make ViewModelMessages Generic
-    };
+        private static IDictionary<string, List<Action<object>>> mediator_Dictionary = new Dictionary<string, List<Action<object>>>();
 
-    public class ViewModelCommunicator
-    {
-        public delegate void RegisterHandler(VMCommunicatorEventArgs v);
-
-        public static event RegisterHandler Register = delegate { };
-
-        public static void NotifyColleagues(ViewModelMessages message, object o = null)
+        static public void Notify(string key, object args)
         {
-            OnNotifyChanged(message, o);
-        }
-        private static void OnNotifyChanged(ViewModelMessages message, object o)
-        {
-            if (Register != null)
-                Register(new VMCommunicatorEventArgs(message, o));
-        }
-    }
-
-    public class VMCommunicatorEventArgs : EventArgs
-    {
-        private ViewModelMessages message;
-        private object obj;
-
-        public VMCommunicatorEventArgs(ViewModelMessages msg, object o)
-        {
-            this.message = msg;
-            this.obj = o;
+            if (mediator_Dictionary.ContainsKey(key))
+                foreach (var callback in mediator_Dictionary[key])
+                    callback(args);
         }
 
-        public ViewModelMessages Message
+        static public void Register(string key, Action<object> callback)
         {
-            get { return message; }
+            if (!mediator_Dictionary.ContainsKey(key))
+            {
+                var list = new List<Action<object>>();
+                list.Add(callback);
+                mediator_Dictionary.Add(key, list);
+            }
+            else
+            {
+                bool found = false;
+                foreach (var item in mediator_Dictionary[key])
+                    if (item.Method.ToString() == callback.Method.ToString())
+                        found = true;
+
+                if (!found)
+                    mediator_Dictionary[key].Add(callback);
+            }
         }
 
-        public object Obj
+        static public void Unregister(string key, Action<object> callback)
         {
-            get { return obj; }
+            if (mediator_Dictionary.ContainsKey(key))
+                mediator_Dictionary[key].Remove(callback);
         }
     }
 }

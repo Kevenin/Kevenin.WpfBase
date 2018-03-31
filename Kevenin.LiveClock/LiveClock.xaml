@@ -1,0 +1,29 @@
+﻿<Window x:Class="Kevenin.LiveClock.LiveClock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kevenin.LiveClock"
+        xmlns:viewmodels="clr-namespace:Kevenin.LiveClock.ViewModels"
+        mc:Ignorable="d"
+        Title="LiveClock"
+        AllowsTransparency="True"
+        Background="{Binding BackgroundColor}"
+        Height="300"
+        Width="300"
+        WindowState="{Binding State}"
+        WindowStyle="None">
+
+    <Window.DataContext>
+        <viewmodels:LiveClockViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Viewbox>
+            <TextBlock
+                TextWrapping="Wrap"
+                Foreground="{Binding ForegroundColor}"
+                Text="{Binding CurrentTime,StringFormat=hh\\:mm}" />
+        </Viewbox>
+    </Grid>
+</Window>
