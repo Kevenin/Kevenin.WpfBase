@@ -11,6 +11,7 @@ namespace Kevenin.LiveClock.ViewModels
     {
         private SolidColorBrush backgroundColor;
         private TimeSpan currentTime;
+        private FontFamily font;
         private SolidColorBrush foregroundColor;
         private WindowState state = WindowState.Normal;
         private Timer timer = new Timer(10);
@@ -22,6 +23,7 @@ namespace Kevenin.LiveClock.ViewModels
             Mediator.Register("FullScreen", ShowFullScreen);
             Mediator.Register("BackgroundColor", ChangeBackgroundColor);
             Mediator.Register("ForegroundColor", ChangeForegroundColor);
+            Mediator.Register("Font", ChangeFont);
         }
 
         public SolidColorBrush BackgroundColor
@@ -34,6 +36,12 @@ namespace Kevenin.LiveClock.ViewModels
         {
             get { return currentTime; }
             set { currentTime = value; this.OnPropertyChanged(); }
+        }
+
+        public FontFamily Font
+        {
+            get { return font; }
+            set { font = value; this.OnPropertyChanged(); }
         }
 
         public SolidColorBrush ForegroundColor
@@ -51,6 +59,11 @@ namespace Kevenin.LiveClock.ViewModels
         private void ChangeBackgroundColor(object value)
         {
             BackgroundColor = new SolidColorBrush((Color)value);
+        }
+
+        private void ChangeFont(object obj)
+        {
+            Font = (FontFamily)obj;
         }
 
         private void ChangeForegroundColor(object value)

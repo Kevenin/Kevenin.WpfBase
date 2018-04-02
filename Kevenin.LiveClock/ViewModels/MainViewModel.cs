@@ -3,6 +3,7 @@ using Kevenin.WpfBase.ViewModelBases;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
@@ -11,21 +12,37 @@ namespace Kevenin.LiveClock.ViewModels
 {
     public class MainViewModel : ViewModelBase, IDisposable
     {
+        private IEnumerable<FontFamily> availableFonts;
         private IEnumerable<Screen> availableScreens;
         private Color backgroundColor;
         private LiveClock clock = new LiveClock();
         private Color foregroundColor;
         private bool isFullScreen;
-        private string isFullScreenText = "FullScreen";
-        private string liveClockButtonText = "Show";
+        private string isFullScreenText = "Windowed";
+        private string liveClockButtonText = "Hidden";
+        private FontFamily selectedFont = new FontFamily("SegoeUI");
         private Screen selectedScreen;
         private bool showLiveClock;
 
         public MainViewModel()
         {
             AvailableScreens = Screen.AllScreens;
-            BackgroundColor = Colors.Black;
-            ForegroundColor = Colors.White;
+            AvailableFonts = Fonts.SystemFontFamilies;
+
+            BackgroundColor = Properties.Settings.Default.Background;
+            ForegroundColor = Properties.Settings.Default.Foregound;
+            SelectedFont = Properties.Settings.Default.Font;
+            IsFullScreen = Properties.Settings.Default.FullScreen;
+
+            SelectedScreen = AvailableScreens.FirstOrDefault(x => x.DeviceName == Properties.Settings.Default.Display);
+            if (SelectedScreen == null)
+                SelectedScreen = AvailableScreens.First();
+        }
+
+        public IEnumerable<FontFamily> AvailableFonts
+        {
+            get { return availableFonts; }
+            set { availableFonts = value; this.OnPropertyChanged(); }
         }
 
         public IEnumerable<Screen> AvailableScreens
@@ -37,13 +54,13 @@ namespace Kevenin.LiveClock.ViewModels
         public Color BackgroundColor
         {
             get { return backgroundColor; }
-            set { backgroundColor = value; Mediator.Notify("BackgroundColor", value); this.OnPropertyChanged(); }
+            set { backgroundColor = value; SetBackground(value); this.OnPropertyChanged(); }
         }
 
         public Color ForegroundColor
         {
             get { return foregroundColor; }
-            set { foregroundColor = value; Mediator.Notify("ForegroundColor", value); this.OnPropertyChanged(); }
+            set { foregroundColor = value; SetForeground(value); this.OnPropertyChanged(); }
         }
 
         public bool IsFullScreen
@@ -64,10 +81,22 @@ namespace Kevenin.LiveClock.ViewModels
             set { liveClockButtonText = value; this.OnPropertyChanged(); }
         }
 
-        public Screen SelectedScreed
+        public FontFamily SelectedFont
+        {
+            get { return selectedFont; }
+            set { selectedFont = value; SetFont(value); this.OnPropertyChanged(); }
+        }
+
+        public Screen SelectedScreen
         {
             get { return selectedScreen; }
-            set { selectedScreen = value; SetClockScreen(value); this.OnPropertyChanged(); }
+            set
+            {
+                selectedScreen = value;
+                if (value != null && clock.IsLoaded)
+                    SetClockScreen(value);
+                this.OnPropertyChanged();
+            }
         }
 
         public bool ShowLiveClock
@@ -91,23 +120,33 @@ namespace Kevenin.LiveClock.ViewModels
         {
             Mediator.Notify("FullScreen", isFullScreenValue);
             if (isFullScreenValue)
-                IsFullScreenText = "Windowed";
-            else
                 IsFullScreenText = "FullScreen";
+            else
+                IsFullScreenText = "Windowed";
+            Properties.Settings.Default.FullScreen = isFullScreenValue;
+            Properties.Settings.Default.Save();
         }
 
         private void OnShowLiveClockChanged(bool showLiveClockValue)
         {
             if (showLiveClockValue)
             {
-                LiveClockButtonText = "Hide";
+                LiveClockButtonText = "Show";
                 clock.Show();
+                SetClockScreen(SelectedScreen);
             }
             else
             {
-                LiveClockButtonText = "Show";
+                LiveClockButtonText = "Hidden";
                 clock.Hide();
             }
+        }
+
+        private void SetBackground(Color value)
+        {
+            Mediator.Notify("BackgroundColor", value);
+            Properties.Settings.Default.Background = value;
+            Properties.Settings.Default.Save();
         }
 
         private void SetClockScreen(Screen selectedScreen)
@@ -127,6 +166,23 @@ namespace Kevenin.LiveClock.ViewModels
             clock.Top = Top < 0 ? 0 : Top;
 
             IsFullScreen = tempFullScreen;
+
+            Properties.Settings.Default.Display = selectedScreen.DeviceName;
+            Properties.Settings.Default.Save();
+        }
+
+        private void SetFont(FontFamily value)
+        {
+            Mediator.Notify("Font", value);
+            Properties.Settings.Default.Font = value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void SetForeground(Color value)
+        {
+            Mediator.Notify("ForegroundColor", value);
+            Properties.Settings.Default.Foregound = value;
+            Properties.Settings.Default.Save();
         }
     }
 }

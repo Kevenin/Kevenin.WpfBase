@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Kevenin.LiveClock"
         xmlns:viewmodels="clr-namespace:Kevenin.LiveClock.ViewModels"
         xmlns:xceedtoolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        ResizeMode="NoResize"
+        Title="Live Clock" Height="205" Width="425">
     <Window.DataContext>
         <viewmodels:MainViewModel />
     </Window.DataContext>
@@ -19,30 +19,47 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition   Width="Auto" />
-            <ColumnDefinition   Width="Auto" />
+            <ColumnDefinition   Width="auto" />
+            <ColumnDefinition   Width="auto" />
+            <ColumnDefinition   Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel
-            Grid.ColumnSpan="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Orientation="Horizontal">
+        <StackPanel>
+            <Label
+                Margin="5"
+                Content="Show/Hide Live Clock" />
             <ToggleButton
+                HorizontalAlignment="Left"
                 Margin="5"
                 Width="90"
                 Height="35"
                 IsChecked="{Binding ShowLiveClock}"
                 Content="{Binding LiveClockButtonText}" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Column="1">
+            <Label
+                Margin="5"
+                Content="Toggle FullScreen" />
             <ToggleButton
+                HorizontalAlignment="Left"
                 Margin="5"
                 Width="90"
                 Height="35"
                 IsChecked="{Binding IsFullScreen}"
                 Content="{Binding IsFullScreenText}" />
-            <ComboBox
-                Width="90"
+        </StackPanel>
+        <StackPanel
+            Grid.Column="2">
+            <Label
                 Margin="5"
-                SelectedItem="{Binding SelectedScreed}"
+                Content="Live Clock Display" />
+            <ComboBox
+                HorizontalAlignment="Left"
+                Margin="5"
+                Height="35"
+                Width="150"
+                SelectedItem="{Binding SelectedScreen}"
                 ItemsSource="{Binding AvailableScreens}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -71,6 +88,30 @@
                 Margin="5"
                 HorizontalAlignment="Left"
                 SelectedColor="{Binding ForegroundColor}" />
+        </StackPanel>
+        <StackPanel
+            HorizontalAlignment="Left"
+            Grid.Row="1"
+            Grid.Column="2">
+            <Label
+                Margin="5"
+                Content="Font" />
+            <ComboBox
+                Margin="5"
+                Height="35"
+                Width="150"
+                ItemsSource="{Binding AvailableFonts}"
+                SelectedItem="{Binding SelectedFont}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label
+                            Width="150"
+                            FontSize="12"
+                            FontFamily="{Binding}"
+                            Content="{Binding}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
     </Grid>
 </Window>

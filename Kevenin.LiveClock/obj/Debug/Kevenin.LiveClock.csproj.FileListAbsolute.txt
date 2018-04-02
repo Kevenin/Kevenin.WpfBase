@@ -33,3 +33,8 @@ D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\bin\Debug\ro\Xceed.Wpf.Ava
 D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\bin\Debug\Kevenin.LiveClock.exe.manifest
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\bin\Debug\Kevenin.LiveClock.application
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\obj\Debug\Kevenin.LiveClock.TrustInfo.xml
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\obj\Debug\Kevenin.LiveClock.exe.manifest
+D:\Documents\Source\Kevenin.WpfBase\Kevenin.LiveClock\obj\Debug\Kevenin.LiveClock.application

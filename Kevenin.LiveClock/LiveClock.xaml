@@ -21,6 +21,7 @@
     <Grid>
         <Viewbox>
             <TextBlock
+                FontFamily="{Binding Font}"
                 TextWrapping="Wrap"
                 Foreground="{Binding ForegroundColor}"
                 Text="{Binding CurrentTime,StringFormat=hh\\:mm}" />
