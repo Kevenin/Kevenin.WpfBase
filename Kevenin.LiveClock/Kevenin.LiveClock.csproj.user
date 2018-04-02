@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>publish\|https://github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/</PublishUrlHistory>
-    <InstallUrlHistory>https://github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/|https://raw.github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/</InstallUrlHistory>
+    <InstallUrlHistory>http://github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/|https://github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/|https://raw.github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory>https://github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
