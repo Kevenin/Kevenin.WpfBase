@@ -25,13 +25,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://raw.github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/</InstallUrl>
+    <InstallUrl>https://github.com/Kevenin/Kevenin.WpfBase/tree/master/Kevenin.LiveClock/publish/</InstallUrl>
     <ProductName>Live Clock</ProductName>
     <PublisherName>Kevenin</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.html</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
