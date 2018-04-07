@@ -13,5 +13,15 @@ namespace Kevenin.LiveClock
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(handler);
+        }
+
+        private void handler(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(((Exception)e.ExceptionObject).Message);
+        }
     }
 }
