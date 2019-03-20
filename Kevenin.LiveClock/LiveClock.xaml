@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kevenin.LiveClock"
-        xmlns:viewmodels="clr-namespace:Kevenin.LiveClock.ViewModels"
+		xmlns:viewmodels="clr-namespace:Kevenin.LiveClock.ViewModels"
+		xmlns:converters="clr-namespace:Kevenin.LiveClock.Converters"
         mc:Ignorable="d"
         Title="LiveClock"
         AllowsTransparency="True"
@@ -13,18 +14,26 @@
         Width="300"
         WindowState="{Binding State}"
         WindowStyle="None">
-
-    <Window.DataContext>
-        <viewmodels:LiveClockViewModel />
-    </Window.DataContext>
-
-    <Grid>
-        <Viewbox>
-            <TextBlock
+	<Window.DataContext>
+		<viewmodels:LiveClockViewModel />
+	</Window.DataContext>
+	<Window.Resources>
+		<converters:TimeSpanFormatConverter x:Key="TimeSpanFormat" />
+	</Window.Resources>
+	<Grid>
+		<Viewbox
+				Margin="5 0 5 0">
+			<TextBlock
                 FontFamily="{Binding Font}"
                 TextWrapping="Wrap"
-                Foreground="{Binding ForegroundColor}"
-                Text="{Binding CurrentTime,StringFormat=hh\\:mm}" />
-        </Viewbox>
-    </Grid>
+                Foreground="{Binding ForegroundColor}">
+				<TextBlock.Text>
+					<MultiBinding Converter="{StaticResource TimeSpanFormat}">
+						<Binding Path="CurrentTime" />
+						<Binding Path="DisplayFormat" />
+					</MultiBinding>
+				</TextBlock.Text>
+			</TextBlock>
+		</Viewbox>
+	</Grid>
 </Window>

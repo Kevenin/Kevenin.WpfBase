@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +16,20 @@ using System.Windows.Shapes;
 
 namespace Kevenin.LiveClock
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            this.Closing += MainWindow_Closing;
-        }
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : MetroWindow
+	{
+		public MainWindow()
+		{
+			InitializeComponent();
+			this.Closing += MainWindow_Closing;
+		}
 
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ((IDisposable)this.DataContext).Dispose();
-        }
-    }
+		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			((IDisposable)this.DataContext).Dispose();
+		}
+	}
 }
