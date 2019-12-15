@@ -223,21 +223,25 @@ namespace Kevenin.LiveClock.ViewModels
 
         private void SetClockScreen(Screen selectedScreen)
         {
-            var transform = PresentationSource.FromVisual(clock).CompositionTarget.TransformFromDevice;
-            var corner = transform.Transform(new Point(selectedScreen.WorkingArea.Right, selectedScreen.WorkingArea.Bottom));
+            var targetdevice = selectedScreen.DeviceName;
+            if (!String.IsNullOrEmpty(targetdevice))
+            {
+                var screen = (from s in Screen.AllScreens
+                              where s.DeviceName.ToLower().Equals(targetdevice.ToLower())
+                              select s).FirstOrDefault();
+                if (screen != null)
+                {
+                    clock.Left = screen.WorkingArea.Left;
+                    clock.Top = screen.WorkingArea.Top;
 
-            var Left = corner.X - clock.ActualWidth;
-            var Top = corner.Y - clock.ActualHeight;
+                    bool tempFullScreen = IsFullScreen;
 
-            bool tempFullScreen = IsFullScreen;
+                    if (IsFullScreen)
+                        IsFullScreen = false;
 
-            if (IsFullScreen)
-                IsFullScreen = false;
-
-            clock.Left = Left < 0 ? 0 : Left;
-            clock.Top = Top < 0 ? 0 : Top;
-
-            IsFullScreen = tempFullScreen;
+                    IsFullScreen = tempFullScreen;
+                }
+            }
 
             Properties.Settings.Default.Display = selectedScreen.DeviceName;
             Properties.Settings.Default.Save();

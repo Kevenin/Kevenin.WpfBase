@@ -6,7 +6,7 @@
 </auto-generated>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="1ce10564-8dba-4e63-8bc5-2298e90ebac8" Name="LiveClock" Language="1033" Codepage="Windows-1252" Version="1.1.0.0" UpgradeCode="8567ee00-a72c-41f5-a03a-21355b4d4a7f" Manufacturer="kblan">
+  <Product Id="1ce10564-8dba-4e63-8bc5-2298e91ebac8" Name="LiveClock" Language="1033" Codepage="Windows-1252" Version="1.2.0.0" UpgradeCode="8567ee00-a72c-41f5-a03a-21355b4d4a7f" Manufacturer="kblan">
     <Package InstallerVersion="200" Compressed="yes" SummaryCodepage="Windows-1252" Languages="1033" />
     <Media Id="1" Cabinet="LiveClock.cab" EmbedCab="yes" />
 
