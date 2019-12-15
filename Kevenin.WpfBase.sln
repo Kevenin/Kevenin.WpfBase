@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kevenin.WpfBase", "Kevenin.WpfBase\Kevenin.WpfBase.csproj", "{235B5616-292E-4C6B-80DA-40891F82A96E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kevenin.LiveClock", "Kevenin.LiveClock\Kevenin.LiveClock.csproj", "{3CAD3062-6C04-480E-8384-88196844E9A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveClockSetup", "LiveClockSetup\LiveClockSetup.csproj", "{C9A243E5-6443-4A00-ACAC-C20A61286264}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{3CAD3062-6C04-480E-8384-88196844E9A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CAD3062-6C04-480E-8384-88196844E9A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CAD3062-6C04-480E-8384-88196844E9A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9A243E5-6443-4A00-ACAC-C20A61286264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9A243E5-6443-4A00-ACAC-C20A61286264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9A243E5-6443-4A00-ACAC-C20A61286264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9A243E5-6443-4A00-ACAC-C20A61286264}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5A0B069-6123-47C3-9152-697C0B7508A2}
 	EndGlobalSection
 EndGlobal

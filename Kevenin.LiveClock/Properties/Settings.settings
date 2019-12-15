@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Foregound" Type="System.Windows.Media.Color" Scope="User">
-      <Value Profile="(Default)">#00000000</Value>
+      <Value Profile="(Default)">#FFFFFFFF</Value>
     </Setting>
     <Setting Name="Background" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF000000</Value>

@@ -20,6 +20,7 @@ namespace Kevenin.LiveClock.ViewModels
 		private bool isCountDownMode = false;
 		private WindowState state = WindowState.Normal;
 		private Timer timer = new Timer(10);
+        private DateTime startTime;
 
 		public LiveClockViewModel()
 		{
@@ -104,7 +105,15 @@ namespace Kevenin.LiveClock.ViewModels
 
 		private void ChangeState(object obj)
 		{
-			switch ((CountDownCommands)obj)
+            var command = (CountDownCommands)obj;
+            if(command == CountDownCommands.Play && countdownState == CountDownCommands.Pause)
+            {
+                startTime = DateTime.Now - (CountDownInitialTime - CurrentTime);
+            }
+            else if(command == CountDownCommands.Play || (countdownState== CountDownCommands.Play && command == CountDownCommands.Reset))
+                startTime = DateTime.Now;
+
+			switch (command)
 			{
 				case CountDownCommands.Play:
 				case CountDownCommands.Pause:
@@ -144,10 +153,7 @@ namespace Kevenin.LiveClock.ViewModels
 			if (isCountDownMode)
 			{
 				if (countdownState == CountDownCommands.Play)
-				{
-					var timeToRemove = new TimeSpan(0, 0, 0, 0, Convert.ToInt32(timer.Interval));
-					CurrentTime = CurrentTime.Subtract(timeToRemove);
-				}
+                    CurrentTime = CountDownInitialTime - (DateTime.Now - startTime);
 			}
 			else
 			{
